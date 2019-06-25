@@ -13,9 +13,6 @@ Kubernetes commands from tutorial https://kubernetes.io/docs/tutorials
 ### setup (optional)
 
 ```bash
-sudo mv /root/.kube /root/.minikube /home1/irteam
-sudo chown -R irteam /home1/irteam/.kube /home1/irteam/.minikube
-
 sudo minikube start --vm-driver=none
 sudo minikube stop
 sudo minikube delete -p minikube
