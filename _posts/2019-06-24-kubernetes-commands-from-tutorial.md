@@ -43,6 +43,7 @@ kubectl get deployments
 
 export POD_NAME=$(kubectl get pods -o go-template \
 --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo POD_NAME=$POD_NAME
 ```
 
 ## access to running pod
