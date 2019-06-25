@@ -14,13 +14,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 lang: en-US
-title: Learn Stream
+title: study note
 email:
-description: "study notes"
+description: "study note"
 baseurl: # the optional subpath of your site, e.g. "/blog"
 url: https://ep1804.github.io
 author:
-  name: Soonmok Kwon
+  name: S. Kwon
   twitter:
   picture: https://ep1804.github.io/assets/images/profile.PNG
 twitter_username:
