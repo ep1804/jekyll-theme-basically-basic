@@ -33,8 +33,8 @@ kubectl cluster-info
 ```
 
 ## run pod
-
 ```bash
+{% raw %}
 kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
 
@@ -44,6 +44,7 @@ kubectl get deployments
 export POD_NAME=$(kubectl get pods -o go-template \
 --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 echo POD_NAME=$POD_NAME
+{% endraw %}
 ```
 
 ## access to running pod
