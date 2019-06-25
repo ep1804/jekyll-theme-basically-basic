@@ -41,7 +41,8 @@ kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
 kubectl get pods
 kubectl get deployments
 
-export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+export POD_NAME=$(kubectl get pods -o go-template \
+--template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 ```
 
 ## access to running pod
@@ -63,7 +64,8 @@ kubectl describe services/kubernetes-bootcamp
 ## access outside cluster
 
 ```bash
-export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp \
+-o go-template='{{(index .spec.ports 0).nodePort}}')
 echo NODE_PORT=$NODE_PORT
 curl $(minikube ip):$NODE_PORT
 ```
@@ -85,15 +87,6 @@ kubectl get pods -l app=v1
 kubectl get services -l app=v1 # not labeled
 ```
 
-## remove service
-
-```bash
-kubectl delete service -l run=kubernetes-bootcamp
-kubectl get services
-curl $(minikube ip):$NODE_PORT
-kubectl exec -it $POD_NAME curl localhost:8080
-```
-
 ## scale-up pods
 
 ```bash
@@ -102,12 +95,9 @@ kubectl get deployments
 kubectl get pods -o wide
 ```
 
-## create service (expose pod) again and see load balancing
+## see load balancing
 
 ```bash
-kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
-export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
-echo NODE_PORT=$NODE_PORT
 curl $(minikube ip):$NODE_PORT # requests are served at different pods
 curl $(minikube ip):$NODE_PORT
 curl $(minikube ip):$NODE_PORT
@@ -117,7 +107,8 @@ curl $(minikube ip):$NODE_PORT
 ## roll upgrade
 
 ```bash
-kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+kubectl set image deployments/kubernetes-bootcamp \
+kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
 kubectl get pods # see changes
 kubectl get pods
 kubectl get pods
@@ -128,8 +119,18 @@ kubectl rollout status deployments/kubernetes-bootcamp # confirm rollout with la
 ## roll back
 
 ```bash
-kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10
+kubectl set image deployments/kubernetes-bootcamp \
+kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10
 kubectl get pods # see problem
 kubectl rollout undo deployments/kubernetes-bootcamp # roll back to previous image version
 kubectl get pods
+```
+
+## remove service
+
+```bash
+kubectl delete service -l run=kubernetes-bootcamp
+kubectl get services
+curl $(minikube ip):$NODE_PORT
+kubectl exec -it $POD_NAME curl localhost:8080
 ```
