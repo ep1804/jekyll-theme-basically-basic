@@ -14,19 +14,19 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 lang: en-US
-title: Learn Stream
+title: study note
 email:
 description: "study notes"
 baseurl: # the optional subpath of your site, e.g. "/blog"
 url: https://ep1804.github.io
 author:
-  name: Soonmok Kwon
+  name: S. Kwon
   twitter:
   picture: https://ep1804.github.io/assets/images/profile.PNG
 twitter_username:
 github_username: ep1804
 logo: # path of site logo, e.g. "/assets/images/logo.png"
-search: # true, false (default)
+search: true
 search_full_content: false # true, false (default)
 search_provider: # lunr (default), algolia
 algolia:
