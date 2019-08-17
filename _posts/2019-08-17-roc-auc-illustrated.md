@@ -8,7 +8,7 @@ tags: [auc]
 
 {% raw %}
 
-### confusion matrix
+## Confusion Matrix
 
 To describe ROC(receiver operation characteristic) and AUC(area under curve),
 let's begin with the confusion matrix:
@@ -25,7 +25,7 @@ prediction can be mapped in the matrix like this:
 
 ![2](/assets/images/roc-auc-illustrated/2.png){: .align-center}
 
-### confusion matrix for regression models with decision thresholds
+## Confusion Matrix for Regression Model with Decision Threshold
 
 The confusion matrix is for classification models. But it can be extended
 for regression models with classification thresholds.
@@ -38,7 +38,7 @@ Like this:
 
 ![3](/assets/images/roc-auc-illustrated/3.png){: .align-center}
 
-### ROC and AUC
+## ROC and AUC
 
 What if the model user selects different thresholds? 
 The model performances (TPR, FPR) will change. 
