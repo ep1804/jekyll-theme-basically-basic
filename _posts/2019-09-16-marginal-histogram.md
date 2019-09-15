@@ -8,6 +8,10 @@ tags: [plot]
 
 {% raw %}
 
+## Figures reference
+
+Fundamentals of Baysian Data Analysis, DataCamp course, [Link](https://campus.datacamp.com/courses/fundamentals-of-bayesian-data-analysis-in-r/how-does-bayesian-inference-work?ex=8)
+
 ## Scatter plot
 
 ![1](/assets/images/marginal-histogram/1.png){: .align-center}
@@ -25,10 +29,6 @@ When conditioned, it shows the correlation clearly.
 ![3](/assets/images/marginal-histogram/3.png){: .align-center}
 
 ![4](/assets/images/marginal-histogram/4.png){: .align-center}
-
-## Figures reference
-
-Fundamentals of Baysian Data Analysis, DataCamp course, [Link](https://campus.datacamp.com/courses/fundamentals-of-bayesian-data-analysis-in-r/how-does-bayesian-inference-work?ex=8)
 
 
 {% endraw %}
