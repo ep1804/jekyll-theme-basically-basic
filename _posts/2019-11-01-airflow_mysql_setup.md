@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  Airflow setup with mysql workthrough
-description: "title:  Airflow setup with mysql workthrough"
+title:  Airflow setup with mysql walkthrough
+description: "title:  Airflow setup with mysql walkthrough"
 modified: 2019-11-01
 tags: [conda]
 ---
