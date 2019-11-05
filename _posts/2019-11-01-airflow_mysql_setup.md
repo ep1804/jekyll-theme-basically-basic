@@ -58,10 +58,27 @@ airflow scheduler -D
 airflow webserver -D
 ```
 
+### setup logrotate
+
+e.g. add file `/etc/logrotate.d/airflow`
+
+```
+/<log-path>/*/*.log /<log-path>/*/*/*.log /<log-path>/*/*/*/*.log /<log-path>/*/*/*/*/*.log {
+  # rotate log files weekly
+  weekly
+  # keep 1 week worth of backlogs
+  rotate 1
+  # remove rotated logs older than 7 days
+  maxage 7
+  missingok
+}
+```
+
 ### ref
 
 - https://airflow.apache.org/start.html
 - https://airflow.apache.org/howto/set-config.html
 - https://docs.sqlalchemy.org/en/13/core/engines.html#mysql
+- https://unix.stackexchange.com/questions/530828/airflow-log-rotation
 
 {% endraw %}
