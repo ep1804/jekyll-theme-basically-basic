@@ -3,12 +3,10 @@ layout: post
 title:  Airflow setup with mysql walkthrough
 description: "title:  Airflow setup with mysql walkthrough"
 modified: 2019-11-01
-tags: [conda]
+tags: [airflow]
 ---
 
 {% raw %}
-
-ref: https://docs.conda.io/en/latest/miniconda.html#installing
 
 ### Assume
 
@@ -20,22 +18,25 @@ ref: https://docs.conda.io/en/latest/miniconda.html#installing
 CREATE DATABASE air;
 CREATE USER 'air'@'%' IDENTIFIED BY 'password';
 GRANT USAGE,EXECUTE ON *.* TO 'air'@'%';
-GRANT ALL PRIVILEGES ON orca_metadata_air.* TO 'air'@'%';
+GRANT ALL PRIVILEGES ON air.* TO 'air'@'%';
 FLUSH PRIVILEGES;
 ```
 
 ### install airflow
 
-```bash
-export AIRFLOW_HOME='/user/airflow_home_path'
+Download basic component and run once
 
-pip install apache-airflow[mysql]
+```bash
+(py3) $ export AIRFLOW_HOME=~/airflow
+(py3) $ pip install apache-airflow
+(py3) $ airflow version
 ```
 
-if it complains about mysql_config,
+if it complains about mysql component, install `mysqlclient`
 
 ```bash
-yum install mariadb-devel
+yum install python-devel mysql-devel
+pip install mysqlclient
 ```
 
 ### setup some configuration in `airflow.cfg`
@@ -44,7 +45,7 @@ yum install mariadb-devel
 dags_folder = ...
 base_log_folder = ...
 default_timezone = ...
-executor = ...
+executor = LocalExecutor
 sql_alchemy_conn = mysql://air:password@<host>:<port>/air
 expose_config = ...
 max_threads = ...
@@ -52,10 +53,27 @@ max_threads = ...
 
 ### run
 
+initialize db
+
 ```bash
 airflow initdb
+```
+
+run scheduler and webserver
+
+```bash
 airflow scheduler -D
-airflow webserver -D
+airflow webserver -p 8280 -D
+```
+
+### kill and reset
+
+at airflow home,
+
+```bash
+cat *.pid | xargs kill
+rm *.pid
+airflow resetdb
 ```
 
 ### setup logrotate
@@ -76,9 +94,10 @@ e.g. add file `/etc/logrotate.d/airflow`
 
 ### ref
 
-- https://airflow.apache.org/start.html
-- https://airflow.apache.org/howto/set-config.html
+- https://airflow.apache.org/docs/stable/start.html
 - https://docs.sqlalchemy.org/en/13/core/engines.html#mysql
+- https://stackoverflow.com/questions/14087598/python-3-importerror-no-module-named-configparser
+- https://stackoverflow.com/questions/39073443/how-do-i-restart-airflow-webserver
 - https://unix.stackexchange.com/questions/530828/airflow-log-rotation
 
 {% endraw %}
