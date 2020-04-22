@@ -39,6 +39,12 @@ yum install python-devel mysql-devel
 pip install mysqlclient
 ```
 
+if it complains about HTMLString, install `wtforms 2.2.1` [ref](https://stackoverflow.com/a/61364347/3243108)
+
+```bash
+pip install 'wtforms==2.2.1'
+```
+
 for docker operation, install `docker python`
 
 ```bash
