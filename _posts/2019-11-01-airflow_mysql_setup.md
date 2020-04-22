@@ -10,7 +10,7 @@ tags: [airflow]
 
 ### Assume
 
-- conda environment for python 3 is ready.
+- all python and pip commands should be executed in python 3 environment
 
 ### setup MySQL database `air` and user `air` 
 
@@ -27,9 +27,9 @@ FLUSH PRIVILEGES;
 Download basic component and run once
 
 ```bash
-(py3) $ export AIRFLOW_HOME=~/airflow
-(py3) $ pip install apache-airflow
-(py3) $ airflow version
+export AIRFLOW_HOME=~/airflow
+pip install apache-airflow
+airflow version
 ```
 
 if it complains about mysql component, install `mysqlclient`
@@ -37,6 +37,12 @@ if it complains about mysql component, install `mysqlclient`
 ```bash
 yum install python-devel mysql-devel
 pip install mysqlclient
+```
+
+for docker operation, install `docker python`
+
+```bash
+pip install docker
 ```
 
 ### setup some configuration in `airflow.cfg`
