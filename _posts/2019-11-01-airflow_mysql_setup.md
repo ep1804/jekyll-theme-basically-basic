@@ -35,8 +35,15 @@ airflow version
 if it complains about mysql component, install `mysqlclient`
 
 ```bash
-yum install python-devel mysql-devel
+yum install python-devel
+yum install mysql-devel
 pip install mysqlclient
+```
+
+if it complains about mariadb version conflict, unstall mariadb [ref](https://stackoverflow.com/a/41057656/3243108)
+
+```bash
+sudo yum -y remove mariadb-libs
 ```
 
 if it complains about HTMLString, install `wtforms 2.2.1` [ref](https://stackoverflow.com/a/61364347/3243108)
