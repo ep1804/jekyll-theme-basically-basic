@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Shell access to remote hbase workthrough
-description: "Shell access to remote hbase workthrough"
+title: Shell access to remote HBase workthrough
+description: "Shell access to remote HBase workthrough"
 modified: 2018-06-28
 tags: [hbase]
 ---

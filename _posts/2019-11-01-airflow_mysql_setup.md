@@ -101,15 +101,28 @@ e.g. add file `/etc/logrotate.d/airflow`
 
 ```
 /<log-path>/*/*.log /<log-path>/*/*/*.log /<log-path>/*/*/*/*.log /<log-path>/*/*/*/*/*.log {
-  # rotate log files weekly
-  weekly
-  # keep 1 week worth of backlogs
-  rotate 1
-  # remove rotated logs older than 7 days
+  # rotate log files daily keeping 1 week worth of backlogs
+  daily
+  rotate 7
   maxage 7
+
+  # set extension
+  dateext # default
+  dateyesterday
+
+  # logrotate is picky about permission
+  su [username] [username]
+
+  # safety measures
   missingok
+  notifempty
+  copytruncate
 }
 ```
+
+### maintenance dags
+
+- https://github.com/teamclairvoyant/airflow-maintenance-dags
 
 ### ref
 
